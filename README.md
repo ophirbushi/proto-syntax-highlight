@@ -1,65 +1,54 @@
-# proto-syntax-highlight README
+# proto-syntax-highlight
 
-This is the README for your extension "proto-syntax-highlight". After writing up a brief description, we recommend including the following sections.
+Lightweight Visual Studio Code extension that provides improved syntax highlighting for Protocol Buffer (.proto) files.
+
+## What it does
+- Adds accurate tokenization and colors for Protocol Buffer syntax (keywords, messages, enums, fields, services, options, imports, comments, and primitive types).
+- Works with files using the `.proto` extension and files recognized as the `proto` language.
 
 ## Features
+- Highlighting for protobuf keywords (syntax, package, import, message, enum, service, rpc, option, repeated, optional, required).
+- Distinct colors for types, message names, enum members, and field names.
+- Proper handling of comments and documentation strings.
+- Lightweight and fast — no background language server required.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Usage
+1. Install the extension from the VS Code Marketplace or load it from the extension development host.
+2. Open any `.proto` file — syntax highlighting will be applied automatically.
+3. If a file is not recognized, open the Command Palette and run "Change Language Mode" → `proto`.
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Installation
+- From VS Code: Search for "proto-syntax-highlight" in Extensions and click Install.
+- From source: clone the repo, open it in VS Code, and run the Extension Development Host.
 
 ## Extension Settings
+This extension does not add runtime settings. Color customizations can be made via your editor theme or by overriding token colors in VS Code settings.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Example to customize colors in settings.json:
+```json
+// Add under "editor.tokenColorCustomizations"
+{
+  "textMateRules": [
+    {
+      "scope": "source.proto keyword",
+      "settings": { "foreground": "#FF8800" }
+    }
+  ]
+}
+```
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Contributing
+Contributions, bug reports, and feature requests are welcome. Please open issues or PRs in the repository.
 
 ## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- This extension provides syntax highlighting only; it does not provide linting or IntelliSense.
+- Extremely large .proto files may have slower initial tokenization depending on theme and editor performance.
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+- Initial release: basic syntax highlighting for Protocol Buffers.
 
 ---
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+For more information about developing VS Code extensions, see:
+- https://code.visualstudio.com/api
