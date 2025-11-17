@@ -1,7 +1,8 @@
 {
   "name": "proto-syntax-highlight",
   "displayName": "proto-syntax-highlight",
-  "description": "",
+  "description": "Lightweight VS Code syntax highlighting for Protocol Buffer (.proto) files.",
+  "repository": "https://github.com/ophirbushi/proto-syntax-highlight",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.106.0"
