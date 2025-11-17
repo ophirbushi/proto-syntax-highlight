@@ -5,6 +5,7 @@
   "repository": "https://github.com/ophirbushi/proto-syntax-highlight",
   "license": "MIT",
   "version": "0.0.1",
+  "publisher": "OphirBushinsky",
   "engines": {
     "vscode": "^1.106.0"
   },
