@@ -1,0 +1,34 @@
+{
+  "name": "proto-syntax-highlight",
+  "displayName": "proto-syntax-highlight",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.106.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "proto",
+        "aliases": [
+          "proto",
+          "proto"
+        ],
+        "extensions": [
+          ".proto"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "proto",
+        "scopeName": "source.proto",
+        "path": "./syntaxes/proto.tmLanguage.json"
+      }
+    ]
+  }
+}

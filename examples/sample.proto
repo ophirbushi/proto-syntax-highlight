@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package example.tutorial;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "com.example.tutorial";
+
+message Person {
+  string name = 1;
+  int32 id = 2;  // Unique ID number for this person.
+  repeated string email = 3;
+  map<string, Project> projects = 4;
+
+  message Project {
+    string name = 1;
+    google.protobuf.Timestamp created = 2;
+  }
+}
+
+enum PhoneType {
+  MOBILE = 0;
+  HOME = 1;
+  WORK = 2;
+}
+
+service PhoneService {
+  rpc GetPerson (Person) returns (Person);
+}

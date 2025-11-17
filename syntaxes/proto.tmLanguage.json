@@ -1,0 +1,209 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "proto",
+	"scopeName": "source.proto",
+	"patterns": [
+		{ "include": "#comments" },
+		{ "include": "#syntax" },
+		{ "include": "#imports" },
+		{ "include": "#package" },
+		{ "include": "#options" },
+		{ "include": "#service" },
+		{ "include": "#message_enum" },
+		{ "include": "#oneof" },
+		{ "include": "#fields" },
+		{ "include": "#strings" },
+		{ "include": "#numbers" }
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.block.proto",
+					"begin": "/\\*",
+					"end": "\\*/"
+				},
+				{
+					"name": "comment.line.double-slash.proto",
+					"match": "//.*$"
+				}
+			]
+		},
+		"syntax": {
+			"patterns": [
+				{
+					"name": "keyword.other.proto",
+					"match": "\\b(syntax)\\b"
+				},
+				{
+					"begin": "\\bsyntax\\b\\s*=\\s*",
+					"beginCaptures": { "0": { "name": "keyword.other.proto" } },
+					"end": ";",
+					"endCaptures": { "0": { "name": "punctuation.terminator.proto" } },
+					"patterns": [{ "include": "#strings" }, { "include": "#comments" }]
+				}
+			]
+		},
+		"imports": {
+			"patterns": [
+				{
+					"begin": "\\b(import)\\b\\s*(?:\\b(public|weak)\\b\\s*)?",
+					"beginCaptures": { "1": { "name": "keyword.other.import.proto" }, "2": { "name": "keyword.other.import.modifier.proto" } },
+					"end": ";",
+					"endCaptures": { "0": { "name": "punctuation.terminator.proto" } },
+					"patterns": [
+						{ "include": "#strings" },
+						{ "include": "#comments" }
+					]
+				}
+			]
+		},
+		"package": {
+			"patterns": [
+				{
+					"begin": "\\b(package)\\b\\s+",
+					"beginCaptures": { "1": { "name": "keyword.other.package.proto" } },
+					"end": ";",
+					"endCaptures": { "0": { "name": "punctuation.terminator.proto" } },
+					"patterns": [
+						{
+							"name": "entity.name.namespace.package.proto",
+							"match": "[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*"
+						}
+					]
+				}
+			]
+		},
+		"options": {
+			"patterns": [
+				{
+					"begin": "\\b(option)\\b\\s+",
+					"beginCaptures": { "1": { "name": "keyword.other.option.proto" } },
+					"end": ";",
+					"endCaptures": { "0": { "name": "punctuation.terminator.proto" } },
+					"patterns": [
+						{
+							"name": "variable.other.option.proto",
+							"match": "(?:\\([A-Za-z0-9_.]+\\)|[A-Za-z0-9_.])+"
+						},
+						{ "include": "#strings" },
+						{ "include": "#numbers" },
+						{ "include": "#comments" }
+					]
+				}
+			]
+		},
+		"service": {
+			"patterns": [
+				{
+					"begin": "\\b(service)\\b\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\{",
+					"beginCaptures": { "1": { "name": "keyword.other.service.proto" }, "2": { "name": "entity.name.type.service.proto" }, "0": { "name": "punctuation.section.block.begin.proto" } },
+					"end": "\\}",
+					"endCaptures": { "0": { "name": "punctuation.section.block.end.proto" } },
+					"patterns": [
+						{
+							"name": "meta.service.rpc.proto",
+							"begin": "\\b(rpc)\\b\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\(",
+							"beginCaptures": { "1": { "name": "keyword.other.rpc.proto" }, "2": { "name": "entity.name.function.rpc.proto" } },
+							"end": ";|\\{",
+							"endCaptures": { "0": { "name": "punctuation.terminator.proto" } },
+							"patterns": [
+								{ "include": "#strings" },
+								{ "include": "#types" },
+								{ "include": "#comments" }
+							]
+						}
+					]
+				}
+			]
+		},
+		"message_enum": {
+			"patterns": [
+				{
+					"begin": "\\b(message|enum|extend)\\b\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\{",
+					"beginCaptures": { "1": { "name": "keyword.other.declaration.proto" }, "2": { "name": "entity.name.type.proto" }, "0": { "name": "punctuation.section.block.begin.proto" } },
+					"end": "\\}",
+					"endCaptures": { "0": { "name": "punctuation.section.block.end.proto" } },
+					"patterns": [
+						{ "include": "#comments" },
+						{ "include": "#fields" },
+						{ "include": "#oneof" },
+						{ "include": "#message_enum" }
+					]
+				}
+			]
+		},
+		"oneof": {
+			"patterns": [
+				{
+					"begin": "\\boneof\\b\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\{",
+					"beginCaptures": { "0": { "name": "keyword.other.oneof.proto" }, "1": { "name": "entity.name.type.oneof.proto" } },
+					"end": "\\}",
+					"endCaptures": { "0": { "name": "punctuation.section.block.end.proto" } },
+					"patterns": [ { "include": "#fields" }, { "include": "#comments" } ]
+				}
+			]
+		},
+		"fields": {
+			"patterns": [
+				{
+					"name": "meta.field.proto",
+					"match": "\\b(optional|required|repeated)\\b\\s+([A-Za-z_][A-Za-z0-9_<>., ]*)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*=\\s*([0-9]+)\\s*(\\[[^\\]]*\\])?\\s*;",
+					"captures": {
+						"1": { "name": "storage.modifier.field.proto" },
+						"2": { "name": "storage.type.field.proto" },
+						"3": { "name": "variable.other.field.proto" },
+						"4": { "name": "constant.numeric.field_number.proto" },
+						"5": { "name": "meta.field.options.proto" }
+					}
+				},
+				{
+					"name": "meta.map_field.proto",
+					"match": "\\bmap\\s*<\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*,\\s*([A-Za-z_][A-Za-z0-9_]<>]*)\\s*>\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*=\\s*([0-9]+)\\s*(\\[[^\\]]*\\])?\\s*;",
+					"captures": {
+						"1": { "name": "storage.type.map.key.proto" },
+						"2": { "name": "storage.type.map.value.proto" },
+						"3": { "name": "variable.other.field.proto" },
+						"4": { "name": "constant.numeric.field_number.proto" },
+						"5": { "name": "meta.field.options.proto" }
+					}
+				},
+				{
+					"name": "meta.simple_field.proto",
+					"match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\b\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*=\\s*([0-9]+)\\s*(\\[[^\\]]*\\])?\\s*;",
+					"captures": {
+						"1": { "name": "storage.type.field.proto" },
+						"2": { "name": "variable.other.field.proto" },
+						"3": { "name": "constant.numeric.field_number.proto" },
+						"4": { "name": "meta.field.options.proto" }
+					}
+				},
+				{
+					"name": "keyword.other.reserved.proto",
+					"match": "\\b(reserved|extensions|extend)\\b"
+				}
+			]
+		},
+		"types": {
+			"patterns": [
+				{ "name": "storage.type.primitive.proto", "match": "\\b(bool|int32|int64|uint32|uint64|sint32|sint64|fixed32|fixed64|sfixed32|sfixed64|float|double|string|bytes)\\b" },
+				{ "name": "storage.type.builtin.proto", "match": "\\b(map)\\b" },
+				{ "name": "entity.name.type.proto", "match": "\\b[A-Za-z_][A-Za-z0-9_.]*\\b" }
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.proto",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{ "name": "constant.character.escape.proto", "match": "\\\\." }
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{ "name": "constant.numeric.hex.proto", "match": "\\b0x[0-9A-Fa-f]+\\b" },
+				{ "name": "constant.numeric.proto", "match": "\\b\\d+\\b" }
+			]
+		}
+	}
+}
