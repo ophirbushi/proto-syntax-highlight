@@ -6,6 +6,9 @@ Lightweight Visual Studio Code extension that provides improved syntax highlight
 - Adds accurate tokenization and colors for Protocol Buffer syntax (keywords, messages, enums, fields, services, options, imports, comments, and primitive types).
 - Works with files using the `.proto` extension and files recognized as the `proto` language.
 
+## Screenshots
+![Preview](https://github.com/ophirbushi/proto-syntax-highlight/blob/main/images/preview.png?raw=true)
+
 ## Features
 - Highlighting for protobuf keywords (syntax, package, import, message, enum, service, rpc, option, repeated, optional, required).
 - Distinct colors for types, message names, enum members, and field names.
