@@ -43,14 +43,6 @@ Example to customize colors in settings.json:
 ## Contributing
 Contributions, bug reports, and feature requests are welcome. Please open issues or PRs in the repository.
 
-## Known Issues
-- This extension provides syntax highlighting only; it does not provide linting or IntelliSense.
-- Extremely large .proto files may have slower initial tokenization depending on theme and editor performance.
-
-## Release Notes
-### 1.0.0
-- Initial release: basic syntax highlighting for Protocol Buffers.
-
 ---
 
 For more information about developing VS Code extensions, see:

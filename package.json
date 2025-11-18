@@ -4,11 +4,12 @@
   "description": "Lightweight VS Code syntax highlighting for Protocol Buffer (.proto) files.",
   "repository": "https://github.com/ophirbushi/proto-syntax-highlight",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "OphirBushinsky",
   "engines": {
     "vscode": "^1.0.0"
   },
+  "icon": "images/logo.png",
   "categories": [
     "Programming Languages"
   ],
